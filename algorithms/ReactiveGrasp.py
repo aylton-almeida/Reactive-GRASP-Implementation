@@ -60,8 +60,12 @@ class ReactiveGRASP(BaseAlgorithm):
         new_element: int = None
 
         while new_element is None:
-            # fetch element at random from the population based on alpha probabilities
-            new_element = random.choices(self.population, self.alpha)[0]
+            # create a candidate list based on the given alpha probabilities
+            candidate_list = random.choices(self.population, self.alpha, k=10)
+
+            # select the best candidate
+            new_element = max(candidate_list, key=lambda element: self.calc_fitness(
+                self.solution + [element]))
 
             # if it's better than the current solution, add it to the solution
             if self.calc_fitness(self.solution + [new_element]) > previous_solution_fitness:

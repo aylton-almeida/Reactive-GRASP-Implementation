@@ -20,7 +20,7 @@ def generate_population():
     """Generate a list of n random numbers, they we'll be our population"""
 
     return [
-        random.randint(0, 100)
+        random.randint(1, 101)
         for _ in range(POPULATION_SIZE)
     ]
 
